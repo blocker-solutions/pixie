@@ -1,0 +1,4 @@
+.idea
+.git
+storage/logs/*.log
+vendor

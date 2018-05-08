@@ -9,8 +9,9 @@ return function (Router $router) {
         return response()->json(["ping" => "pong"]);
     });
 
-    // avatar default route.
-    $router->get('/a/{username}', 'AvatarController@show');
     // alias route for image extension (compat mode).
     $router->get('/a/{username}.{any}', 'AvatarController@show');
+    // avatar default route.
+    $router->get('/a/{username}', 'AvatarController@show');
+
 };

@@ -12,5 +12,5 @@ return function (Router $router) {
     // avatar default route.
     $router->get('/a/{username}', 'AvatarController@show');
     // alias route for image extension (compat mode).
-    $router->get('/a/{username}.jpg', 'AvatarController@show');
+    $router->get('/a/{username}.{any}', 'AvatarController@show');
 };

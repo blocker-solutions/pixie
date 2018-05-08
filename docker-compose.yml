@@ -1,0 +1,53 @@
+# Blocker.Pixie.
+#
+# For customizations, prefer using docker-compose.override.yml.
+
+# config.
+version: '3'
+
+# volumes.
+volumes:
+  # Redis Data.
+  redis-data:
+  # .config.
+  dot-config:
+  # .local.
+  dot-local:
+  # .cache.
+  dot-cache:
+  # .composer.
+  dot-composer:
+
+# services.
+services:
+
+  # Redis.
+  cache:
+    image: redis:4
+    container_name: pixie-redis
+    command: --appendonly yes --requirepass "pixie"
+    volumes:
+      - redis-data:/data
+    ports:
+      - 6379:6379
+
+  # API.
+  pixie:
+    image: ambientum/php:7.2-nginx
+    container_name: pixie-api
+    environment:
+      - XDEBUG_ENABLED=false
+      - PHP_IDE_CONFIG=serverName=ambientum
+    volumes:
+      - .nginx.conf:/etc/nginx/nginx.conf
+      - .nginx-host.conf:/etc/nginx/sites/laravel.conf
+      - .:/var/www/app
+      - dot-config:/home/ambientum/.config
+      - dot-cache:/home/ambientum/.cache
+      - dot-local:/home/ambientum/.local
+      - dot-composer:/home/ambientum/.composer
+    ports:
+      - 80:8080
+      - 443:8083
+    links:
+      - cache

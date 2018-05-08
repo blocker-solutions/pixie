@@ -1,6 +1,6 @@
 {
     "name": "blocker/pixie",
-    "description": "Pixie is an image/avatar proxy for Steem applications.",
+    "description": "Blocker Pixie: Avatar/Image Proxy for Steem Applications.",
     "keywords": ["steem", "image", "proxy", "avatar"],
     "license": "MIT",
     "type": "project",

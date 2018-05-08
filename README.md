@@ -10,4 +10,4 @@ https://img.blocker.press/a/steem-account
 
 ## Using
 
-You can run with Docker, the image name is blockerpress/pixie
+You can run with Docker, the image name is `blockerpress/pixie`

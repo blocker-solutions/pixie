@@ -6,7 +6,7 @@ use Intervention\Image\Constraint;
 use Unirest\Request;
 
 /**
- * Class DownloadImage
+ * Class DownloadImage.
  *
  * Image downloader job.
  */
@@ -16,9 +16,8 @@ class DownloadImage extends Job
      * @var array Headers to use when requesting the images.
      */
     protected $downloadHeaders = [
-        'Accept' => 'image/jpg, image/jpeg, image/webp, image/png, image/svg'
+        'Accept' => 'image/jpg, image/jpeg, image/webp, image/png, image/svg',
     ];
-
 
     /**
      * Actually download the images.
@@ -34,7 +33,7 @@ class DownloadImage extends Job
             // do the HTTP request to retrieve the image.
             $response = Request::get($avatarURL, $this->downloadHeaders);
 
-        // catch
+            // catch
         } catch (\Exception $e) {
             // case
             return null;
@@ -45,7 +44,7 @@ class DownloadImage extends Job
     }
 
     /**
-     * Find the image, from URL or auto generated/
+     * Find the image, from URL or auto generated/.
      *
      * @return string
      */

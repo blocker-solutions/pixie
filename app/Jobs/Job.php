@@ -4,9 +4,9 @@ namespace Pixie\Jobs;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Cache\CacheManager;
-use Illuminate\Queue\SerializesModels;
-use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Queue\SerializesModels;
 use Intervention\Image\ImageManager;
 use Laravel\Lumen\Routing\ProvidesConvenienceMethods;
 use LightRPC\Client;
@@ -20,7 +20,6 @@ abstract class Job implements ShouldQueue
 {
     // make jobs queueable.
     use InteractsWithQueue, Queueable, SerializesModels;
-
     // enable dispatching capabilities.
     use ProvidesConvenienceMethods;
 
@@ -90,8 +89,8 @@ abstract class Job implements ShouldQueue
     /**
      * Cache remember wrapper.
      *
-     * @param string $key
-     * @param int $ttl
+     * @param string   $key
+     * @param int      $ttl
      * @param \Closure $what
      *
      * @return mixed

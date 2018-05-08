@@ -17,10 +17,11 @@ class AvatarController extends Controller
      * Handles the default avatar display GET method.
      *
      * @param string $username
+     * @param string $extension
      *
      * @return Response
      */
-    public function show(string $username)
+    public function show(string $username, string $extension = null)
     {
         // find the avatar for the given username.
         $image = $this->dispatchNow(new DownloadImage($username));

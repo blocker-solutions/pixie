@@ -10,8 +10,8 @@ return function (Router $router) {
     });
 
     // alias route for image extension (compat mode).
-    $router->get('/a/{username}.{any}', 'AvatarController@show');
+    $router->get("/a/{username}", 'AvatarController@show');
     // avatar default route.
-    $router->get('/a/{username}', 'AvatarController@show');
+    $router->get('/a/{username}/{extension}', 'AvatarController@show');
 
 };

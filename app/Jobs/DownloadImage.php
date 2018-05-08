@@ -80,7 +80,7 @@ class DownloadImage extends Job
         $source->fit($this->baseSize, $this->baseSize, $resizeConstraint);
 
         // encode the result as webp and return.
-        return $source->encode('webp', 80)->getEncoded();
+        return $source->encode('jpg', 80)->getEncoded();
     }
 
     /**

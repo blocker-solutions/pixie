@@ -26,6 +26,6 @@ class AvatarController extends Controller
         $image = $this->dispatchNow(new DownloadImage($username));
 
         // creates and return a response with HTTP status 200, and the content aas being WEBP.
-        return response($image, 200, ['Content-Type' => 'image/webp']);
+        return response($image, 200, ['Content-Type' => 'image/jpeg']);
     }
 }

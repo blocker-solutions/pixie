@@ -17,7 +17,7 @@ class GetAvatarURL extends Job
     protected function getAccount() : ?array
     {
         // call the steem api.
-        $response = $this->steem->call('database_api', 'get_accounts', [[ $this->username ]]);
+        $response = $this->steem->call('database_api', 'get_accounts', [[$this->username]]);
 
         // return null for error responses.
         if ($response->isError()) {
@@ -46,7 +46,7 @@ class GetAvatarURL extends Job
         // locate the account on Steem.
         try {
             $account = $this->getAccount();
-        // assign null if error.
+            // assign null if error.
         } catch (\Exception $e) {
             $account = null;
         }
@@ -59,10 +59,10 @@ class GetAvatarURL extends Job
         // try extracting the profile image URL.
         try {
             // extract meta.
-            $meta = json_decode(array_get($account, 'json_metadata', "{}"), true);
+            $meta = json_decode(array_get($account, 'json_metadata', '{}'), true);
             // return the profile image, if any.
             $url = array_get($meta, 'profile.profile_image', null);
-        // otherwise.
+            // otherwise.
         } catch (\Exception $e) {
             // assign null if exception.
             $url = null;

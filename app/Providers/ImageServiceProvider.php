@@ -6,7 +6,7 @@ use Illuminate\Support\ServiceProvider;
 use Intervention\Image\ImageManager;
 
 /**
- * Class ImageServiceProvider
+ * Class ImageServiceProvider.
  *
  * Custom intervention image loader for lumen (config bypass).
  */
@@ -18,8 +18,8 @@ class ImageServiceProvider extends ServiceProvider
     public function register()
     {
         // register an ImageManager instance on the IoC.
-        $this->app->singleton('image',function () {
-            return new ImageManager([ 'driver' => 'gd' ]);
+        $this->app->singleton('image', function () {
+            return new ImageManager(['driver' => 'gd']);
         });
 
         // alis the manager as Image.

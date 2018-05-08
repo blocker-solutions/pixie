@@ -2,9 +2,9 @@
 
 namespace Pixie\Http\Controllers;
 
-use Pixie\Jobs\DownloadImage;
 use Illuminate\Http\Response;
 use Laravel\Lumen\Routing\Controller;
+use Pixie\Jobs\DownloadImage;
 
 /**
  * Class AvatarController.

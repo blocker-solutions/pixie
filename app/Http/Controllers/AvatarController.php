@@ -21,12 +21,17 @@ class AvatarController extends Controller
      *
      * @return Response
      */
-    public function show(string $username, string $extension = null)
+    public function show(string $username, string $extension = 'jpeg')
     {
+        // if the extension is not jpeg or webp, default to jpeg
+        if ($extension != 'jpeg' || $extension != 'webp') {
+            $extension = 'jpeg';
+        }
+
         // find the avatar for the given username.
-        $image = $this->dispatchNow(new DownloadImage($username));
+        $image = $this->dispatchNow(new DownloadImage($username, $extension));
 
         // creates and return a response with HTTP status 200, and the content aas being WEBP.
-        return response($image, 200, ['Content-Type' => 'image/jpeg']);
+        return response($image, 200, ['Content-Type' => "image/{$extension}"]);
     }
 }

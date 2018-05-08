@@ -64,11 +64,17 @@ abstract class Job implements ShouldQueue
     protected $customFont = 'app/fonts/Oswald-Regular.ttf';
 
     /**
+     * @var string Default extension / encoding.
+     */
+    protected $extension = 'jpeg';
+
+    /**
      * Job constructor.
      *
      * @param string $username
+     * @param string $extension
      */
-    public function __construct(string $username)
+    public function __construct(string $username, string $extension = 'jpeg')
     {
         // light RPC instance.
         $this->steem = new Client(env('STEEM_API', 'https://api.steemit.com'));
@@ -84,6 +90,9 @@ abstract class Job implements ShouldQueue
 
         // assign a cache manager instance.
         $this->cacheManager = app()->make('cache');
+
+        // default encoding extension.
+        $this->extension = $extension;
     }
 
     /**

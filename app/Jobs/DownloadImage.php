@@ -80,7 +80,7 @@ class DownloadImage extends Job
         $source->fit($this->baseSize, $this->baseSize, $resizeConstraint);
 
         // encode the result as webp and return.
-        return $source->encode('jpg', 80)->getEncoded();
+        return $source->encode('jpeg', 80)->getEncoded();
     }
 
     /**
@@ -97,6 +97,23 @@ class DownloadImage extends Job
         };
 
         // find, resize, cache and return the avatar.
-        return $this->remember($this->cacheKey, $this->ttl, $imageFinder);
+        $image = $this->remember($this->cacheKey, $this->ttl, $imageFinder);
+
+        // custom format encoder function.
+        $formatEncoder = function () use ($image) {
+            // encode on the custom format.
+            return $this->imageManager->make($image)
+                ->encode($this->extension, 80)
+                ->getEncoded();
+        };
+
+        // if the extension is not the default format (jpeg).
+        if ($this->extension != 'jpeg') {
+            // convert and cache the format.
+            return $this->remember("{$this->cacheKey}.{$this->extension}", $this->ttl, $formatEncoder);
+        }
+
+        // return the original image otherwise.
+        return $image;
     }
 }

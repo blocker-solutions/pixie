@@ -16,7 +16,3 @@ RUN cd /var/www/app && \
     composer install --no-interaction --no-progress --prefer-dist && \
     echo -e "\n ---> [3/3] Cleaning Up \n" && \
     rm -rf /home/ambientum/.composer
-
-ADD .opcache.ini /etc/php7/conf.d/00_opcache.ini
-ADD .nginx-host.conf /etc/nginx/sites/laravel.conf
-ADD .nginx.conf /etc/nginx/nginx.conf

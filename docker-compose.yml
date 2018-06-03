@@ -9,6 +9,10 @@ version: '3'
 volumes:
   # Redis Data.
   redis-data:
+  # ipfs data volume.
+  ipfs-data:
+  # ipfs staging volume.
+  ipfs-staging:
   # .config.
   dot-config:
   # .local.
@@ -25,18 +29,29 @@ services:
   cache:
     image: redis:4
     container_name: pixie-redis
-    shm_size: 512M
     command: --appendonly yes --requirepass "pixie"
     volumes:
       - redis-data:/data
     ports:
       - 6379:6379
 
+  ipfs:
+    image: ipfs/go-ipfs:latest
+    container_name: pixie-ipfs
+    volumes:
+      - ipfs-staging:/export
+      - ipfs-data:/data/ipfs
+    ports:
+      - 4001:4001
+      - 5001:5001
+      - 8080:8080
+
+
   # API.
   pixie:
-    image: ambientum/php:7.2-nginx
+    image: ambientum/php:7.2
+    command: "/var/www/app/start"
     container_name: pixie-api
-    shm_size: 512M
     environment:
       - FRAMEWORK=laravel-cache
       - XDEBUG_ENABLED=false
@@ -52,3 +67,4 @@ services:
       - 443:8083
     links:
       - cache
+      - ipfs

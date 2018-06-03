@@ -19,7 +19,7 @@ class ImageServiceProvider extends ServiceProvider
     {
         // register an ImageManager instance on the IoC.
         $this->app->singleton('image', function () {
-            return new ImageManager(['driver' => 'gd']);
+            return new ImageManager(['driver' => 'imagick']);
         });
 
         // alis the manager as Image.

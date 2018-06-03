@@ -6,8 +6,8 @@ use Illuminate\Cache\CacheManager;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Laravel\Lumen\Routing\Controller;
-use Pixie\Services\IPFS\Client as IPFS;
 use Pixie\Jobs\DownloadImage;
+use Pixie\Services\IPFS\Client as IPFS;
 
 /**
  * Class AvatarController.
@@ -55,11 +55,11 @@ class AvatarController extends Controller
         // this response is direct, but sets the eTag and
         // pre-fetch directly from IPFS.
         return response($image, 200, [
-            'Content-Type'  => "image/{$extension}",
-            'Cache-Control' => [ 'public', 'max-age=60' ],
-            'Etag' => 'W/"'.$hash.'"',
-            'Link' => "<$ipfsUrl>; rel=preload; as=image; crossorigin",
-            'Content-Location' =>$ipfsUrl,
+            'Content-Type'     => "image/{$extension}",
+            'Cache-Control'    => ['public', 'max-age=60'],
+            'Etag'             => 'W/"'.$hash.'"',
+            'Link'             => "<$ipfsUrl>; rel=preload; as=image; crossorigin",
+            'Content-Location' => $ipfsUrl,
         ]);
     }
 
@@ -70,7 +70,7 @@ class AvatarController extends Controller
      *
      * @return string
      */
-    protected function checkExtension ($extension = 'png') : string
+    protected function checkExtension($extension = 'png') : string
     {
         // if the extension is not jpeg or webp, default to jpeg
         if ($extension != 'jpeg' && $extension != 'webp' && $extension != 'png') {
@@ -86,7 +86,7 @@ class AvatarController extends Controller
      *
      * @return null|string
      */
-    protected function tryCachedIpfsTag () : ?string
+    protected function tryCachedIpfsTag() : ?string
     {
         /** @var Request $request */
         $request = app()->make('request');
@@ -162,10 +162,10 @@ class AvatarController extends Controller
         $ipfsUrl = "https://gateway.ipfs.io/ipfs/{$hash}";
 
         return response('', 304, [
-            'Content-Type'  => "image/{$extension}",
-            'Cache-Control' => [ 'public', 'max-age=60' ],
-            'Etag' => 'W/"'.$hash.'"',
-            'Link' => "<$ipfsUrl>; rel=preload; as=image; crossorigin",
+            'Content-Type'     => "image/{$extension}",
+            'Cache-Control'    => ['public', 'max-age=60'],
+            'Etag'             => 'W/"'.$hash.'"',
+            'Link'             => "<$ipfsUrl>; rel=preload; as=image; crossorigin",
             'Content-Location' => $ipfsUrl,
         ]);
     }

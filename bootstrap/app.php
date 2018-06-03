@@ -11,8 +11,8 @@ use Laravel\Lumen\Application;
 use Laravel\Lumen\Console\Kernel as ConsoleKernel;
 use Pixie\Exceptions\Handler;
 use Pixie\Providers\ImageServiceProvider;
-use Pixie\Providers\SteemServiceProvider;
 use Pixie\Providers\IPFSServiceProvider;
+use Pixie\Providers\SteemServiceProvider;
 
 // load the environment variables.
 require_once __DIR__.'/env.php';

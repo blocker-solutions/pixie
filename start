@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+exec $(pwd)/ppm.phar start \
+    --ansi \
+    --workers=8 \
+    --logging=0 \
+    --max-requests=4294967296 \
+    --bootstrap=laravel \
+    --host=0.0.0.0 \
+    --app-env=production \
+    --static-directory=public/

@@ -49,7 +49,7 @@ class AvatarController extends Controller
         $hash = $this->pushToIPFS($image);
 
         // build the IPFS url for the response.
-        $ipfsUrl = "https://gateway.ipfs.io/ipfs/{$hash}";
+        $ipfsUrl = "https://ipfs.blocker.press/ipfs/{$hash}";
 
         // creates and return a response with HTTP status 200.
         // this response is direct, but sets the eTag and

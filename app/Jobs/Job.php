@@ -66,7 +66,7 @@ abstract class Job implements ShouldQueue
     /**
      * @var string Default extension / encoding.
      */
-    protected $extension = 'jpeg';
+    protected $extension = 'png';
 
     /**
      * Job constructor.

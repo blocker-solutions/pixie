@@ -80,7 +80,7 @@ class DownloadImage extends Job
         $source->fit($this->baseSize, $this->baseSize, $resizeConstraint);
 
         // encode the result as webp and return.
-        return $source->encode('jpeg', 80)->getEncoded();
+        return $source->encode('png', 80)->getEncoded();
     }
 
     /**
@@ -108,7 +108,7 @@ class DownloadImage extends Job
         };
 
         // if the extension is not the default format (jpeg).
-        if ($this->extension != 'jpeg') {
+        if ($this->extension != 'png') {
             // convert and cache the format.
             return $this->remember("{$this->cacheKey}.{$this->extension}", $this->ttl, $formatEncoder);
         }

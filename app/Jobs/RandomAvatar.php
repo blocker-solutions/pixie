@@ -80,6 +80,9 @@ class RandomAvatar extends Job
         // determine the middle of the canvas.
         $halfSize = round(($this->baseSize / 2));
 
+        // quarter size is the text boundary.
+        $quarterSize = round(($halfSize / 2));
+
         // get the initials from the username.
         $initials = $this->getInitials();
 
@@ -87,7 +90,7 @@ class RandomAvatar extends Job
         $textSettings = $this->getTextSettingsFunction();
 
         // write the initials on the canvas.
-        $canvas->text($initials, $halfSize, $halfSize, $textSettings);
+        $canvas->text($initials, $quarterSize, $quarterSize, $textSettings);
 
         // return the generated canvas.
         return $canvas;
@@ -107,13 +110,13 @@ class RandomAvatar extends Job
             // load the custom font.
             $font->file(storage_path($this->customFont));
             // set the initials boundaries.
-            $font->size($halfSize * 1.2);
+            $font->size($halfSize);
             // set the text white.
             $font->color('#FFFFFF');
             // center and...
-            $font->align('center');
+            $font->align('left');
             // ... middle the text.
-            $font->valign('middle');
+            $font->valign('top');
         };
 
         // return the text settings function.

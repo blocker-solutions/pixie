@@ -159,7 +159,7 @@ class AvatarController extends Controller
      */
     protected function redirectToIPFS($hash, $extension = 'png') : Response
     {
-        $ipfsUrl = "https://gateway.ipfs.io/ipfs/{$hash}";
+        $ipfsUrl = "https://ipfs.blocker.press/ipfs/{$hash}";
 
         return response('', 304, [
             'Content-Type'     => "image/{$extension}",

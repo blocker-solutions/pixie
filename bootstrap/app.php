@@ -12,6 +12,7 @@ use Laravel\Lumen\Console\Kernel as ConsoleKernel;
 use Pixie\Exceptions\Handler;
 use Pixie\Providers\ImageServiceProvider;
 use Pixie\Providers\SteemServiceProvider;
+use Pixie\Providers\IPFSServiceProvider;
 
 // load the environment variables.
 require_once __DIR__.'/env.php';
@@ -33,6 +34,8 @@ $app->register(RedisServiceProvider::class);
 $app->register(ImageServiceProvider::class);
 // steem provider.
 $app->register(SteemServiceProvider::class);
+// ipfs provider.
+$app->register(IPFSServiceProvider::class);
 
 // main router params.
 $routerParams = ['namespace' => 'Pixie\Http\Controllers'];

@@ -3,8 +3,8 @@
 namespace Pixie\Services\IPFS;
 
 use Exception;
-use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Client as HttpClient;
+use GuzzleHttp\Exception\GuzzleException;
 
 /**
  * Class Client.
@@ -35,13 +35,13 @@ class Client
 
         // assign the http client instance.
         $this->httpClient = new HttpClient([
-            'base_uri' => $apiURL,
-            'max' => 5,
-            'strict' => false,
-            'referer' => false,
-            'protocols' => ['http'],
+            'base_uri'        => $apiURL,
+            'max'             => 5,
+            'strict'          => false,
+            'referer'         => false,
+            'protocols'       => ['http'],
             'track_redirects' => false,
-            'expect' => true
+            'expect'          => true,
         ]);
     }
 
@@ -57,11 +57,11 @@ class Client
                 'multipart' => [
                     [
                         'Content-Type' => 'multipart/formdata',
-                        'name' => 'object_to_add',
-                        'contents' => $contents
-                    ]
+                        'name'         => 'object_to_add',
+                        'contents'     => $contents,
+                    ],
                 ],
-                'query' => $this->getQueryParameters()
+                'query' => $this->getQueryParameters(),
             ]);
 
             // get response body contents.
@@ -73,7 +73,6 @@ class Client
         } catch (Exception $e) {
             return null;
         }
-
     }
 
     /**
@@ -97,7 +96,7 @@ class Client
             // no tickle
             't' => false,
             // no wrap.
-            'w' => false
+            'w' => false,
         ];
     }
 }
